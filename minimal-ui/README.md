@@ -7,7 +7,7 @@ A fixed DASH stream source is configured and user interaction is limited to play
 
 ### Getting started
 
-Put a copy of `THEOplayer.chromeless.js` library into `./static/THEOplayer`.
+Put a copy of the THEOplayer Web SDK into `./static/THEOplayer`.
 
 > Before you follow the steps below, make sure you have the
 [Lightning-CLI](https://rdkcentral.github.io/Lightning-CLI/#/) installed _globally_ only your system
