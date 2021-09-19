@@ -9,18 +9,27 @@ const THEOplayerLibrary = `${THEOplayerLibraryLocation}/THEOplayer.chromeless.js
 const THEOplayerCSS = `${THEOplayerLibraryLocation}/ui.css`;
 
 const THEOplayerPlugin = {
-    async createPlayer() {
-        if (!player) {
-            await initLibrary();
+    async initLibrary() {
+        await initLibrary();
+    },
+    createPlayer() {
+        if (player === undefined) {
             player = new THEOplayer.Player(videoWrapper, {
                 libraryLocation: THEOplayerLibraryLocation
             });
         }
         return player;
+    },
+    version() {
+        return THEOplayer.version;
     }
 };
 
 const initLibrary = async () => {
+    if (videoWrapper !== undefined) {
+        // Already initialized
+        return;
+    }
     videoWrapper = setupVideoWrapper();
     const scriptEl = document.createElement('script');
     scriptEl.src = THEOplayerLibrary;

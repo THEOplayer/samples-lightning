@@ -1,31 +1,18 @@
-import { Lightning, Utils } from '@lightningjs/sdk';
-import Player from './Player';
+import { Router, Utils } from '@lightningjs/sdk';
+import routes from './routes';
 
-export default class App extends Lightning.Component {
+export default class App extends Router.App {
     static getFonts() {
         return [{ family: 'Regular', url: Utils.asset('fonts/Roboto-Regular.ttf') }];
     }
 
+    _setup() {
+        Router.startRouter(routes, this);
+    }
+
     static _template() {
         return {
-            Player: {
-                type: Player
-            }
+            ...super._template()
         };
-    }
-
-    $onPlayerReady() {
-        this.tag('Player').source = {
-            sources: [
-                {
-                    src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
-                }
-            ],
-            metaData: null
-        };
-    }
-
-    _getFocused() {
-        return this.tag('Player');
     }
 }
